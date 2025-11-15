@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Multi Search Engine</title>
+    <style>
+        /* Horizon Theme Colors */
+        :root {
+            --primary: #0d47a1;
+            --primary-dark: #0a357a;
+            --accent: #ffcc00;
+            --bg: #e6ecf5;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: slideDown 1.2s ease;
+        }
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            width: 420px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+            text-align: center;
+            animation: popIn 0.9s ease;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border: 1px solid #888;
+        }
+        button {
+            width: 90%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            transform: scale(1);
+        }
+        button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        .small-btn {
+            background: #222;
+            margin-top: 8px;
+        }
+        .small-btn:hover {
+            background: #000;
+        }
+            /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body><div class="logo">Horizon Group Search</div><div class="box">
+    <h3>Multi Search Engine</h3>
+    <input type="text" id="query" placeholder="Search anything here..."><!-- Main Engines -->
+<button onclick="googleSearch()">Search on Google</button>
+<button onclick="poetrySearch()">Search Poetry</button>
+<button onclick="criticismSearch()">Search Practical Criticism</button>
+
+<!-- Extra Engines -->
+<button class="small-btn" onclick="bingSearch()">Search on Bing</button>
+<button class="small-btn" onclick="youtubeSearch()">Search on YouTube</button>
+<button class="small-btn" onclick="researchGateSearch()">Search on ResearchGate</button>
+<button class="small-btn" onclick="jstorSearch()">Search on JSTOR</button>
+
+</div><script>
+    function getQuery() {
+        return encodeURIComponent(document.getElementById("query").value);
+    }
+
+    function googleSearch() {
+        window.location.href = "https://www.google.com/search?q=" + getQuery();
+    }
+
+    function poetrySearch() {
+        window.location.href = "https://www.poetryfoundation.org/search?query=" + getQuery();
+    }
+
+    function criticismSearch() {
+        window.location.href = "https://www.google.com/search?q=practical+criticism+" + getQuery();
+    }
+
+    function bingSearch() {
+        window.location.href = "https://www.bing.com/search?q=" + getQuery();
+    }
+
+    function youtubeSearch() {
+        window.location.href = "https://www.youtube.com/results?search_query=" + getQuery();
+    }
+
+    function researchGateSearch() {
+        window.location.href = "https://www.researchgate.net/search?q=" + getQuery();
+    }
+
+    function jstorSearch() {
+        window.location.href = "https://www.jstor.org/action/doBasicSearch?Query=" + getQuery();
+    }
+</script></body>
+  </html>
