@@ -1,132 +1,304 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizon Multi Search Engine</title>
-    <style>
-        /* Horizon Theme Colors */
-        :root {
-            --primary: #0d47a1;
-            --primary-dark: #0a357a;
-            --accent: #ffcc00;
-            --bg: #e6ecf5;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background: var(--bg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 60px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        .logo {
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 20px;
-            animation: slideDown 1.2s ease;
-        }
-        .box {
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            width: 420px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-            text-align: center;
-            animation: popIn 0.9s ease;
-        }
-        input {
-            width: 90%;
-            padding: 12px;
-            margin: 15px 0;
-            border-radius: 6px;
-            border: 1px solid #888;
-        }
-        button {
-            width: 90%;
-            padding: 14px;
-            margin-top: 10px;
-            border: none;
-            background: var(--primary);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-            transform: scale(1);
-        }
-        button:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-        .small-btn {
-            background: #222;
-            margin-top: 8px;
-        }
-        .small-btn:hover {
-            background: #000;
-        }
-            /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-40px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes popIn {
-            0% { transform: scale(0.6); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triezzarh’s Hair Salon & Boutique</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f9f6f1;
+  color:#333;
+}
+h2{text-align:center;margin:40px 0 20px}
+
+/* ---------- HEADER ---------- */
+header{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)), url("https://via.placeholder.com/1200x800") center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  text-align:center;
+}
+header h1{font-size:2.5rem;margin-bottom:10px}
+header p{font-size:1.2rem}
+
+/* ---------- SERVICES ---------- */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.card{
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 10px 20px rgba(0,0,0,.1);
+  transition:transform .3s,box-shadow .3s;
+  cursor:pointer;
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 30px rgba(0,0,0,.2);
+}
+
+/* ---------- GALLERY ---------- */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+  padding:20px;
+}
+.gallery img{
+  width:100%;
+  border-radius:15px;
+  cursor:pointer;
+  transition:transform .3s, box-shadow .3s;
+}
+.gallery img:hover{
+  transform:scale(1.05);
+  box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+/* FULLSCREEN VIEW */
+#viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+#viewer img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:15px;
+}
+#viewer span{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:30px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ---------- WHATSAPP ---------- */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:12px 15px;
+  border-radius:50px;
+  font-weight:bold;
+  font-size:.9rem;
+  animation:pulse 2s infinite;
+  z-index:999;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}
+  70%{box-shadow:0 0 0 20px rgba(37,211,102,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+
+/* ---------- EMOJI AVATAR ---------- */
+.avatar{
+  position:fixed;
+  bottom:80px;
+  left:20px;
+  display:none;
+  align-items:center;
+  gap:6px;
+  z-index:1000;
+}
+.avatar .emoji{
+  font-size:28px;
+  cursor:pointer;
+}
+.avatar .speech{
+  background:#fff;
+  padding:6px 10px;
+  border-radius:12px;
+  max-width:160px;
+  font-size:.75rem;
+  box-shadow:0 8px 15px rgba(0,0,0,.15);
+}
+
+/* ---------- CHATBOT ---------- */
+.chatbot{
+  position:fixed;
+  bottom:120px;
+  left:20px;
+  width:300px;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:1000;
+}
+.chatbot header{
+  background:#6b4f3f;
+  color:#fff;
+  padding:12px;
+  font-weight:bold;
+}
+.messages{
+  height:260px;
+  overflow-y:auto;
+  padding:10px;
+  font-size:.9rem;
+}
+.bot{
+  background:#f1f1f1;
+  padding:8px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+.user{
+  background:#e8b4c8;
+  padding:8px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+  text-align:right;
+}
+.input{
+  display:flex;
+  border-top:1px solid #ddd;
+}
+.input input{
+  flex:1;
+  border:none;
+  padding:10px;
+}
+.input button{
+  border:none;
+  background:#6b4f3f;
+  color:#fff;
+  padding:10px 15px;
+  cursor:pointer;
+}
+</style>
 </head>
-<body><div class="logo">Horizon Group Search</div><div class="box">
-    <h3>Multi Search Engine</h3>
-    <input type="text" id="query" placeholder="Search anything here..."><!-- Main Engines -->
-<button onclick="googleSearch()">Search on Google</button>
-<button onclick="poetrySearch()">Search Poetry</button>
-<button onclick="criticismSearch()">Search Practical Criticism</button>
+<body>
 
-<!-- Extra Engines -->
-<button class="small-btn" onclick="bingSearch()">Search on Bing</button>
-<button class="small-btn" onclick="youtubeSearch()">Search on YouTube</button>
-<button class="small-btn" onclick="researchGateSearch()">Search on ResearchGate</button>
-<button class="small-btn" onclick="jstorSearch()">Search on JSTOR</button>
+<!-- HEADER -->
+<header>
+  <h1>Triezzarh’s Hair Salon & Boutique</h1>
+  <p>Luxury • Style • Confidence</p>
+</header>
 
-</div><script>
-    function getQuery() {
-        return encodeURIComponent(document.getElementById("query").value);
-    }
+<!-- SERVICES -->
+<h2>Our Services</h2>
+<div class="services">
+  <div class="card">Knotless Braids</div>
+  <div class="card">Twists</div>
+  <div class="card">Cornrows</div>
+  <div class="card">Butterfly Locs</div>
+</div>
 
-    function googleSearch() {
-        window.location.href = "https://www.google.com/search?q=" + getQuery();
-    }
+<!-- GALLERY -->
+<h2>Gallery</h2>
+<div class="gallery">
+  <img src="https://via.placeholder.com/400" onclick="openImg(this)">
+  <img src="https://via.placeholder.com/401" onclick="openImg(this)">
+  <img src="https://via.placeholder.com/402" onclick="openImg(this)">
+  <img src="https://via.placeholder.com/403" onclick="openImg(this)">
+</div>
 
-    function poetrySearch() {
-        window.location.href = "https://www.poetryfoundation.org/search?query=" + getQuery();
-    }
+<!-- FULLSCREEN VIEW -->
+<div id="viewer">
+  <span onclick="closeImg()">×</span>
+  <img id="viewerImg">
+</div>
 
-    function criticismSearch() {
-        window.location.href = "https://www.google.com/search?q=practical+criticism+" + getQuery();
-    }
+<!-- WHATSAPP BUTTON -->
+<a class="whatsapp" href="https://wa.me/265981988072">Book</a>
 
-    function bingSearch() {
-        window.location.href = "https://www.bing.com/search?q=" + getQuery();
-    }
+<!-- EMOJI AVATAR + SPEECH -->
+<div class="avatar" id="avatar">
+  <div class="emoji" onclick="toggleChat()">💁‍♀️</div>
+  <div class="speech">
+    Hi, I’m <b>Triezzarh</b>, your hair specialist.<br>Ask me any question 💇🏽‍♀️✨
+  </div>
+</div>
 
-    function youtubeSearch() {
-        window.location.href = "https://www.youtube.com/results?search_query=" + getQuery();
-    }
+<!-- CHATBOT -->
+<div class="chatbot" id="chatbot">
+  <header>Triezzarh 💇🏽‍♀️</header>
+  <div class="messages" id="messages">
+    <div class="bot">Hi 👋 I’m Triezzarh. Ask me anything about hair & styles.</div>
+  </div>
+  <div class="input">
+    <input type="text" id="userInput" placeholder="Type your question…">
+    <button onclick="send()">Send</button>
+  </div>
+</div>
 
-    function researchGateSearch() {
-        window.location.href = "https://www.researchgate.net/search?q=" + getQuery();
-    }
+<script>
+// Show avatar when scrolling down
+window.addEventListener('scroll', ()=>{
+  const avatar=document.getElementById("avatar");
+  if(window.scrollY>200){
+    avatar.style.display="flex";
+  } else {
+    avatar.style.display="none";
+  }
+});
 
-    function jstorSearch() {
-        window.location.href = "https://www.jstor.org/action/doBasicSearch?Query=" + getQuery();
-    }
-</script></body>
-  </html>
+// Toggle chatbot
+function toggleChat(){
+  const c=document.getElementById("chatbot");
+  c.style.display=c.style.display==="flex"?"none":"flex";
+}
+
+// Gallery open/close
+function openImg(img){
+  document.getElementById("viewer").style.display="flex";
+  document.getElementById("viewerImg").src=img.src;
+}
+function closeImg(){
+  document.getElementById("viewer").style.display="none";
+}
+
+// Chatbot free text reply
+function send(){
+  const input=document.getElementById("userInput");
+  const msg=input.value.trim();
+  if(!msg) return;
+  const m=document.getElementById("messages");
+  m.innerHTML+=`<div class="user">${msg}</div>`;
+  input.value="";
+
+  let reply="That’s a lovely question 💕 Please book to get personal advice.";
+  const t=msg.toLowerCase();
+
+  if(t.includes("knotless"))
+    reply="Knotless braids are lightweight, neat and last 4–6 weeks ✨";
+  else if(t.includes("face"))
+    reply="Round faces suit knotless braids & twists beautifully 💇🏽‍♀️";
+  else if(t.includes("care"))
+    reply="Moisturize regularly and avoid excess heat 🧴";
+  else if(t.includes("student"))
+    reply="Low-maintenance styles like cornrows are perfect for students 🎓";
+  else if(t.includes("book"))
+    reply="You can book using the WhatsApp button below 💖";
+
+  setTimeout(()=>{
+    m.innerHTML+=`<div class="bot">${reply}</div>`;
+    m.scrollTop=m.scrollHeight;
+  },600);
+}
+</script>
+</body>
+</html>
